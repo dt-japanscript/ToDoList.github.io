@@ -31,4 +31,16 @@ export class ToDoList {
 
         return content;
     }
+    sortToDoList(isDES) {
+        this.todoArray.sort((todo, nextToDo) => {
+            const textA = todo.textTodo.toLowerCase();
+            const textB = nextToDo.textTodo.toLowerCase();
+
+            // Ascended
+            return textB.localeCompare(textA);
+        });
+        if (isDES) {
+            this.todoArray.reverse();
+        }
+    }
 }

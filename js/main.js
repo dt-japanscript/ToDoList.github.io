@@ -91,3 +91,17 @@ const moveToDo = (depart, arrival, obj, tdIndex) => {
     // Add todo to arrival
     arrival.addToDo(obj);
 }
+
+const sortASC = (e) => {
+    let ulToDo = getELE("todo");
+    todoList_instance.sortToDoList(false);
+    showToDoList(ulToDo);
+}
+window.sortASC = sortASC;
+
+const sortDES = (e) => {
+    let ulToDo = getELE("todo");
+    todoList_instance.sortToDoList(true);
+    showToDoList(ulToDo);
+}
+window.sortDES = sortDES;
