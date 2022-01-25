@@ -5,6 +5,9 @@ export class ToDoList {
     addToDo(todo) {
         this.todoArray.push(todo);
     }
+    removeToDo(index) {
+        this.todoArray.splice(index, 1);
+    }
     renderToDo() {
         let content = "";
         content = this.todoArray.reduceRight((tdContent, item, index) => {
@@ -12,7 +15,7 @@ export class ToDoList {
                 <li>
                     <span>${item.textTodo}</span>
                     <div class="buttons">
-                        <button class="remove">
+                        <button class="remove" data-index="${index}" onclick="deleteToDo(event)">
                             <i class="fa fa-trash-alt"></i>
                         </button>
                         <button class="complete">

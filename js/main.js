@@ -26,7 +26,19 @@ getELE("addItem").addEventListener("click", () => {
 })
 
 //Hàm hiển thị todo
-
 const showToDoList = (ulToDo) => {
     ulToDo.innerHTML = todoList_instance.renderToDo();
 }
+
+// Hàm delete todo
+const deleteToDo = (e) => {
+    let tdIndex = e.currentTarget.getAttribute("data-index");
+    let ulToDo = getELE("todo");
+
+    console.log(tdIndex);
+
+    todoList_instance.removeToDo(tdIndex);
+    console.log(todoList_instance)
+    showToDoList(ulToDo);
+}
+window.deleteToDo = deleteToDo;
