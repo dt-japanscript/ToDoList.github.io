@@ -3,6 +3,8 @@ import { ToDo } from "./todo.js";
 import { ToDoList } from "./todoList.js";
 
 let todoList_instance = new ToDoList();
+let completeList = new ToDoList();
+
 // Hàm rút gọn cú pháp
 const getELE = (id) => {
     return document.getElementById(id);
@@ -30,6 +32,10 @@ const showToDoList = (ulToDo) => {
     ulToDo.innerHTML = todoList_instance.renderToDo();
 }
 
+const showCompletedList = (ulCompleted) => {
+    ulCompleted.innerHTML = completeList.renderToDo();
+}
+
 // Hàm delete todo
 const deleteToDo = (e) => {
     let tdIndex = e.currentTarget.getAttribute("data-index");
@@ -42,3 +48,30 @@ const deleteToDo = (e) => {
     showToDoList(ulToDo);
 }
 window.deleteToDo = deleteToDo;
+
+const completeToDo = (e) => {
+    let tdIndex = e.currentTarget.getAttribute("data-index");
+    let status = e.currentTarget.getAttribute("data-status");
+    let ulToDo = getELE("todo");
+    let ulCompleted = getELE("completed");
+
+    if (status == "todo") {
+        let completedItem = todoList_instance.todoArray.slice(tdIndex, tdIndex + 1);
+
+        let objToDo = new ToDo(completedItem[0].textTodo, "completed");
+        moveToDo(todoList_instance, completeList, objToDo, tdIndex);
+
+        showToDoList(ulToDo);
+        showCompletedList(ulCompleted);
+    }
+}
+
+window.completeToDo = completeToDo;
+
+const moveToDo = (depart, arrival, obj, tdIndex) => {
+    // Remove todo from depart
+    depart.removeToDo(tdIndex);
+
+    // Add todo to arrival
+    arrival.addToDo(obj);
+}
