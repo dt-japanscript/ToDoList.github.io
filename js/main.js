@@ -17,9 +17,16 @@ const addToDo = () => {
         let td = new ToDo(txtToDo, 'todo');
         todoList_instance.addToDo(td);
     }
-    console.log(todoList_instance.todoArray)
+    showToDoList(ulToDo);
+    getELE('newTask').value = "";
 }
 
 getELE("addItem").addEventListener("click", () => {
     addToDo();
 })
+
+//Hàm hiển thị todo
+
+const showToDoList = (ulToDo) => {
+    ulToDo.innerHTML = todoList_instance.renderToDo();
+}
