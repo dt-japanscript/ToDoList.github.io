@@ -39,13 +39,20 @@ const showCompletedList = (ulCompleted) => {
 // Hàm delete todo
 const deleteToDo = (e) => {
     let tdIndex = e.currentTarget.getAttribute("data-index");
+    let status = e.currentTarget.getAttribute("data-status");
     let ulToDo = getELE("todo");
+    let ulCompleted = getELE("completed");
 
-    console.log(tdIndex);
+    if (status == "todo") {
+        todoList_instance.removeToDo();
+        showToDoList(ulToDo);
+    } else if (status == "completed") {
+        completeList.removeToDo();
+        showCompletedList(ulCompleted);
+    } else {
+        alert("Error");
+    }
 
-    todoList_instance.removeToDo(tdIndex);
-    console.log(todoList_instance)
-    showToDoList(ulToDo);
 }
 window.deleteToDo = deleteToDo;
 

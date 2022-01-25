@@ -15,7 +15,7 @@ export class ToDoList {
                 <li>
                     <span>${item.textTodo}</span>
                     <div class="buttons">
-                        <button class="remove" data-index="${index}" onclick="deleteToDo(event)">
+                        <button class="remove" data-index="${index}" data-status="${item.status}"  onclick="deleteToDo(event)">
                             <i class="fa fa-trash-alt"></i>
                         </button>
 
